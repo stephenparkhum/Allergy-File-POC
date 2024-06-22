@@ -2,7 +2,9 @@
 import siteData from "@/data/appData";
 import Cropper, { ReactCropperElement } from "react-cropper";
 import "cropperjs/dist/cropper.css";
-import React, { LegacyRef, ReactHTMLElement, useRef } from "react";
+import React, { useRef } from "react";
+import Image from "next/image";
+import daiya from "../public/DaiyaMacNCheeze.jpeg";
 
 export default function Home() {
   const { testImages } = siteData;
@@ -13,7 +15,6 @@ export default function Home() {
   const [currentSave, setCurrentSave] = React.useState<undefined | string>(
     undefined,
   );
-  const canvasRef = useRef(null);
   const onCrop = () => {
     const cropper = cropperRef.current?.cropper;
     setCurrentCrop(cropper?.getCroppedCanvas());
@@ -51,8 +52,7 @@ export default function Home() {
           Crop The Ingredients
         </h2>
         <Cropper
-          // src={testImages.daiya}
-          src="https://raw.githubusercontent.com/roadmanfong/react-cropper/master/example/img/child.jpg"
+          src={daiya.src}
           style={{ height: 400, width: "100%" }}
           // Cropper.js options
           initialAspectRatio={16 / 9}
