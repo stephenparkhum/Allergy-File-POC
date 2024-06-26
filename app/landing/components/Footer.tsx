@@ -90,9 +90,10 @@ export default function Footer() {
             </Stack>
           </Box>
         </Box>
-        {sections.map((section: string) => {
+        {sections.map((section: string, idx: number) => {
           return (
             <Box
+              key={`${section}-${idx}`}
               sx={{
                 display: { xs: "none", sm: "flex" },
                 flexDirection: "column",
@@ -102,13 +103,19 @@ export default function Footer() {
               <Typography variant="body2" fontWeight={600}>
                 {section}
               </Typography>
-              {subsections[section].map((subsection: string) => {
-                return (
-                  <Link color="text.secondary" href="#">
-                    {subsection}
-                  </Link>
-                );
-              })}
+              {subsections[section].map(
+                (subsection: string, subIdx: number) => {
+                  return (
+                    <Link
+                      key={`${section}-${subsection}-${subIdx}`}
+                      color="text.secondary"
+                      href="#"
+                    >
+                      {subsection}
+                    </Link>
+                  );
+                },
+              )}
             </Box>
           );
         })}
