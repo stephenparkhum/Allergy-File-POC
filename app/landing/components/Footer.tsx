@@ -22,6 +22,14 @@ function Copyright() {
   );
 }
 
+const sections: string[] = ["Product", "Company", "Legal"];
+
+const subsections: { [key: string]: string[] } = {
+  Product: ["Features", "Testimonials", "Highlights", "Pricing", "FAQs"],
+  Company: ["About Us", "Press"],
+  Legal: ["Terms", "Privacy"],
+};
+
 export default function Footer() {
   return (
     <Container
@@ -82,72 +90,28 @@ export default function Footer() {
             </Stack>
           </Box>
         </Box>
-        <Box
-          sx={{
-            display: { xs: "none", sm: "flex" },
-            flexDirection: "column",
-            gap: 1,
-          }}
-        >
-          <Typography variant="body2" fontWeight={600}>
-            Product
-          </Typography>
-          <Link color="text.secondary" href="#">
-            Features
-          </Link>
-          <Link color="text.secondary" href="#">
-            Testimonials
-          </Link>
-          <Link color="text.secondary" href="#">
-            Highlights
-          </Link>
-          <Link color="text.secondary" href="#">
-            Pricing
-          </Link>
-          <Link color="text.secondary" href="#">
-            FAQs
-          </Link>
-        </Box>
-        <Box
-          sx={{
-            display: { xs: "none", sm: "flex" },
-            flexDirection: "column",
-            gap: 1,
-          }}
-        >
-          <Typography variant="body2" fontWeight={600}>
-            Company
-          </Typography>
-          <Link color="text.secondary" href="#">
-            About us
-          </Link>
-          <Link color="text.secondary" href="#">
-            Careers
-          </Link>
-          <Link color="text.secondary" href="#">
-            Press
-          </Link>
-        </Box>
-        <Box
-          sx={{
-            display: { xs: "none", sm: "flex" },
-            flexDirection: "column",
-            gap: 1,
-          }}
-        >
-          <Typography variant="body2" fontWeight={600}>
-            Legal
-          </Typography>
-          <Link color="text.secondary" href="#">
-            Terms
-          </Link>
-          <Link color="text.secondary" href="#">
-            Privacy
-          </Link>
-          <Link color="text.secondary" href="#">
-            Contact
-          </Link>
-        </Box>
+        {sections.map((section: string) => {
+          return (
+            <Box
+              sx={{
+                display: { xs: "none", sm: "flex" },
+                flexDirection: "column",
+                gap: 1,
+              }}
+            >
+              <Typography variant="body2" fontWeight={600}>
+                {section}
+              </Typography>
+              {subsections[section].map((subsection: string) => {
+                return (
+                  <Link color="text.secondary" href="#">
+                    {subsection}
+                  </Link>
+                );
+              })}
+            </Box>
+          );
+        })}
       </Box>
       <Box
         sx={{
